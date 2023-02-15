@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>🐵iMonkey Dictionary</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-info bg-info">
+        <a class="navbar-brand text-dark" href="#">🐒🐵iMonkey Dictionary</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link text-dark" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/contact">Contact Us</a>
+            </li>
+            
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="container">
+         <h1 class="text-center my-3">Search word in Dictionary</h1>
+         <form>
+            <div class="form-group">
+              <label for="dic">Enter a Word</label>
+              <input type="text" class="form-control" id="dic" aria-describedby="emailHelp">
+              <button id="submit" type="submit" class="btn btn-primary my-3">Submit</button>
+            </div>
+        </form>
+        <h1 class="text-center my-3"> Results: </h1>
+       <h2>--------------------------------------------------------------------------------------</h2>
+    <p id="results"> </p>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+     <script>
+        submit.addEventListener("click",(e)=>{ 
+            e.preventDefault(); 
+            let url=`http://localhost:3001/searchword?word=${dic.value}`
+            let a=fetch(url);
+            a.then((x)=>{
+                return x.json()
+            }).then((y)=>{
+                console.log(y)
+                let htmlstr=`Yor searchedd word: <b> ${y.word} </b> <br>
+                <p>${y.definition}</p>         
+                `
+                results.innerHTML=htmlstr;
+                return y
+            })
+        }) 
+
+     </script>
+  </body>
+</html> 
